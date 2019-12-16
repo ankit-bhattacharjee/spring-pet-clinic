@@ -6,10 +6,4 @@ import springpetclinic.service.PetDbService;
 
 @Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetDbService {
-
-    @Override
-    public Pet save(Pet pet) {
-        this.save(pet.getId(), pet);
-        return pet;
-    }
 }
