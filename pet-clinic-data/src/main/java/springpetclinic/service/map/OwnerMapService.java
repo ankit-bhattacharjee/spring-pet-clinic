@@ -5,7 +5,7 @@ import springpetclinic.model.Owner;
 import springpetclinic.service.OwnerDbService;
 
 @Service
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerDbService {
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerDbService {
 
     @Override
     public Owner findByLastName(String lastName) {

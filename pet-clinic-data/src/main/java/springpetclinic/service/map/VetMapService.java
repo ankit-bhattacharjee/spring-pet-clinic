@@ -5,6 +5,6 @@ import springpetclinic.model.Vet;
 import springpetclinic.service.VetDbService;
 
 @Service
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetDbService {
+public class VetMapService extends AbstractMapService<Vet, Long> implements VetDbService {
 
 }
