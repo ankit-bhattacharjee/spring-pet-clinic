@@ -3,11 +3,14 @@ package springpetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import springpetclinic.model.Owner;
+import springpetclinic.model.Pet;
 import springpetclinic.model.PetType;
 import springpetclinic.model.Vet;
 import springpetclinic.service.OwnerDbService;
 import springpetclinic.service.PetTypeService;
 import springpetclinic.service.VetDbService;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -34,13 +37,27 @@ public class DataLoader implements CommandLineRunner {
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
-        owner1.setLastName("Myers");
+        owner1.setLastName("Weston");
         ownerDbService.save(owner1);
 
+        Pet mikesPet = new Pet();
+        mikesPet.setPetType(dog);
+        mikesPet.setName("Rosco");
+        mikesPet.setOwner(owner1);
+        mikesPet.setBirthDate(LocalDate.now());
+        owner1.getPets().add(mikesPet);
+
         Owner owner2 = new Owner();
-        owner2.setFirstName("Freddy");
-        owner2.setLastName("Kruger");
+        owner2.setFirstName("Fionna");
+        owner2.setLastName("Glen");
         ownerDbService.save(owner2);
+
+        Pet fionnasPet = new Pet();
+        fionnasPet.setPetType(cat);
+        fionnasPet.setName("Snowy");
+        fionnasPet.setOwner(owner2);
+        fionnasPet.setBirthDate(LocalDate.now());
+        owner2.getPets().add(fionnasPet);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Jason");
