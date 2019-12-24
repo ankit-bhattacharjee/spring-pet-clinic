@@ -3,24 +3,24 @@ package springpetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import springpetclinic.model.*;
-import springpetclinic.services.OwnerDbService;
+import springpetclinic.services.OwnerService;
 import springpetclinic.services.PetTypeService;
 import springpetclinic.services.SpecialtyService;
-import springpetclinic.services.VetDbService;
+import springpetclinic.services.VetService;
 
 import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private final OwnerDbService ownerDbService;
-    private final VetDbService vetDbService;
+    private final OwnerService ownerService;
+    private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
 
-    public DataLoader(OwnerDbService ownerDbService, VetDbService vetDbService, PetTypeService petTypeService, SpecialtyService specialtyService) {
-        this.ownerDbService = ownerDbService;
-        this.vetDbService = vetDbService;
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
     }
@@ -57,7 +57,7 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
-        ownerDbService.save(owner1);
+        ownerService.save(owner1);
 
         Pet mikesPet = new Pet();
         mikesPet.setPetType(dog);
@@ -69,7 +69,7 @@ public class DataLoader implements CommandLineRunner {
         Owner owner2 = new Owner();
         owner2.setFirstName("Fionna");
         owner2.setLastName("Glen");
-        ownerDbService.save(owner2);
+        ownerService.save(owner2);
 
         Pet fionnasPet = new Pet();
         fionnasPet.setPetType(cat);
@@ -82,12 +82,12 @@ public class DataLoader implements CommandLineRunner {
         vet1.setFirstName("Jessie");
         vet1.setLastName("Porter");
         vet1.getSpecialities().add(radiology);
-        vetDbService.save(vet1);
+        vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Sam");
         vet2.setLastName("Axe");
         vet2.getSpecialities().add(nursery);
-        vetDbService.save(vet2);
+        vetService.save(vet2);
     }
 }

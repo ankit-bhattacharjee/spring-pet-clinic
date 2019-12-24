@@ -4,10 +4,10 @@ import org.springframework.stereotype.Service;
 import springpetclinic.model.Specialty;
 import springpetclinic.model.Vet;
 import springpetclinic.services.SpecialtyService;
-import springpetclinic.services.VetDbService;
+import springpetclinic.services.VetService;
 
 @Service
-public class VetMapService extends AbstractMapService<Vet, Long> implements VetDbService {
+public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialtyService specialtyService;
 

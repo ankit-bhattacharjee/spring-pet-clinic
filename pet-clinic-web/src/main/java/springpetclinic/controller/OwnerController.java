@@ -3,21 +3,21 @@ package springpetclinic.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import springpetclinic.services.OwnerDbService;
+import springpetclinic.services.OwnerService;
 
 @Controller
 @RequestMapping("/owners")
 public class OwnerController {
 
-    private final OwnerDbService ownerDbService;
+    private final OwnerService ownerService;
 
-    public OwnerController(OwnerDbService ownerDbService) {
-        this.ownerDbService = ownerDbService;
+    public OwnerController(OwnerService ownerService) {
+        this.ownerService = ownerService;
     }
 
     @RequestMapping({"", "/", "/index", "/index.html"})
     public String index(Model model) {
-        model.addAttribute("owners", ownerDbService.findAll());
+        model.addAttribute("owners", ownerService.findAll());
         return "owners/index";
     }
 

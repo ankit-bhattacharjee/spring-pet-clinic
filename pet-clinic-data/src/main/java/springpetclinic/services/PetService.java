@@ -2,5 +2,5 @@ package springpetclinic.services;
 
 import springpetclinic.model.Pet;
 
-public interface PetDbService extends CrudService<Pet, Long> {
+public interface PetService extends CrudService<Pet, Long> {
 }
