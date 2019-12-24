@@ -1,4 +1,4 @@
-package springpetclinic.service;
+package springpetclinic.services;
 
 import springpetclinic.model.Vet;
 

@@ -1,10 +1,10 @@
-package springpetclinic.service.map;
+package springpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
 import springpetclinic.model.Specialty;
 import springpetclinic.model.Vet;
-import springpetclinic.service.SpecialtyService;
-import springpetclinic.service.VetDbService;
+import springpetclinic.services.SpecialtyService;
+import springpetclinic.services.VetDbService;
 
 @Service
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetDbService {

@@ -1,7 +1,7 @@
-package springpetclinic.service.map;
+package springpetclinic.services.map;
 
 import springpetclinic.model.BaseEntity;
-import springpetclinic.service.CrudService;
+import springpetclinic.services.CrudService;
 
 import java.util.*;
 

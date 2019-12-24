@@ -1,11 +1,11 @@
-package springpetclinic.service.map;
+package springpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
 import springpetclinic.model.Owner;
 import springpetclinic.model.Pet;
-import springpetclinic.service.OwnerDbService;
-import springpetclinic.service.PetDbService;
-import springpetclinic.service.PetTypeService;
+import springpetclinic.services.OwnerDbService;
+import springpetclinic.services.PetDbService;
+import springpetclinic.services.PetTypeService;
 
 @Service
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerDbService {
