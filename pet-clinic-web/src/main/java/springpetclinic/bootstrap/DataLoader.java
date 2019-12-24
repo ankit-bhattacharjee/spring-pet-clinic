@@ -3,10 +3,10 @@ package springpetclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import springpetclinic.model.*;
-import springpetclinic.service.OwnerDbService;
-import springpetclinic.service.PetTypeService;
-import springpetclinic.service.SpecialtyService;
-import springpetclinic.service.VetDbService;
+import springpetclinic.services.OwnerDbService;
+import springpetclinic.services.PetTypeService;
+import springpetclinic.services.SpecialtyService;
+import springpetclinic.services.VetDbService;
 
 import java.time.LocalDate;
 
