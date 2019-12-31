@@ -14,7 +14,10 @@ import springpetclinic.services.OwnerService;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -52,4 +55,14 @@ class OwnerControllerTest {
                 .andExpect(view().name("notImplemented"));
         verifyNoInteractions(ownerService);
     }
+
+    @Test
+    void displayOwners() throws Exception {
+        when(ownerService.findById(any())).thenReturn(Owner.builder().id(1L).build());
+        mockMvc.perform(get("/owners/123")).andExpect(status().isOk())
+                .andExpect(view().name("owners/ownerDetails"))
+                .andExpect(model().attribute("owner", hasProperty("id", is(1L))));
+    }
+
+
 }
