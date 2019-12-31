@@ -4,6 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 import springpetclinic.model.BaseEntity;
 import springpetclinic.services.CrudService;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public abstract class AbstractJpaService<T extends BaseEntity, ID extends Long> implements CrudService<T, ID> {
@@ -21,7 +22,9 @@ public abstract class AbstractJpaService<T extends BaseEntity, ID extends Long> 
 
     @Override
     public Set<T> findAll() {
-        return (Set<T>) repository.findAll();
+        Set<T> set = new HashSet<>();
+        repository.findAll().forEach(set::add);
+        return set;
     }
 
     @Override

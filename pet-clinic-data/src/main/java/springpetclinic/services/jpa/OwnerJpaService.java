@@ -6,6 +6,8 @@ import springpetclinic.model.Owner;
 import springpetclinic.repositories.OwnerRepository;
 import springpetclinic.services.OwnerService;
 
+import java.util.List;
+
 @Service
 @Profile("spring-data-jpa")
 public class OwnerJpaService extends AbstractJpaService<Owner, Long> implements OwnerService {
@@ -17,5 +19,10 @@ public class OwnerJpaService extends AbstractJpaService<Owner, Long> implements 
     @Override
     public Owner findByLastName(String lastName) {
         return ((OwnerRepository) repository).findByLastName(lastName);
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        return ((OwnerRepository) repository).findAllByLastNameLike(lastName);
     }
 }

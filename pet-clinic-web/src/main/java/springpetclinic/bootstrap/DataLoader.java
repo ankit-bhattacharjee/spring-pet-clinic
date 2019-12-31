@@ -80,7 +80,7 @@ public class DataLoader implements CommandLineRunner {
 
         Visit catVisit = new Visit();
         catVisit.setPet(fionnasPet);
-        catVisit.setLocalDate(LocalDate.now());
+        catVisit.setDate(LocalDate.now());
         catVisit.setDescription("Sneezy Kitty");
         visitService.save(catVisit);
 
@@ -95,5 +95,6 @@ public class DataLoader implements CommandLineRunner {
         vet2.setLastName("Axe");
         vet2.getSpecialities().add(nursery);
         vetService.save(vet2);
+        System.out.println("Completed Data Load.");
     }
 }
