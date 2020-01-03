@@ -1,17 +1,20 @@
 package springpetclinic.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import springpetclinic.model.Owner;
+import springpetclinic.model.Pet;
 import springpetclinic.model.PetType;
 import springpetclinic.services.OwnerService;
 import springpetclinic.services.PetService;
 import springpetclinic.services.PetTypeService;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
@@ -35,11 +38,37 @@ public class PetController {
 
     @ModelAttribute("owner")
     public Owner findOwner(@PathVariable Long ownerId) {
+        System.out.println(ownerService.findById(ownerId));
         return ownerService.findById(ownerId);
     }
 
     @InitBinder("owner")
     public void initBinderOwner(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
+    }
+
+    @GetMapping("/pets/new")
+    public String initCreationForm(Owner owner, Model model) {
+        System.out.println(owner);
+        Pet pet = new Pet();
+        owner.getPets().add(pet);
+        pet.setOwner(owner);
+        model.addAttribute("pet", pet);
+        return "pets/createOrUpdatePet";
+    }
+
+    @PostMapping("/pets/new")
+    public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, ModelMap model) {
+        if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
+            result.rejectValue("name", "duplicate", "already exists");
+        }
+        owner.getPets().add(pet);
+        if (result.hasErrors()) {
+            model.put("pet", pet);
+            return "pets/createOrUpdatePet";
+        } else {
+            petService.save(pet);
+            return "redirect:/owners/" + owner.getId();
+        }
     }
 }
